@@ -6,16 +6,19 @@ var app = new Vue({
       message: ''
     },
     watch: {
-      
+      keyword: function(newKeyword, oldKeyword) {
+        this.message = 'Waiting for you to stop typing...'
+        this.debouncedGetAnswer()
+      }
     },
     created: function() {
-      this.keyword = 'JavaScript'
-      this.getAnswer()
+      this.debouncedGetAnswer = _.debounce(this.getAnswer, 1000)
     },
     methods: {
       getAnswer: function() {
         if(this.keyword === '') {
           this.items = null
+          this.message = ''
           return
         }
         this.message = 'Loading...'
