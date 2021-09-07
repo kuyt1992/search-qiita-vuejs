@@ -6,6 +6,17 @@
   </head>
   <body>
     <div id="app">
+      <p>
+        <input type="text" v-model="keyword">
+      </p>
+      <p>
+        {{ message }}
+      </p>
+      <ul>
+        <li v-for="item in items">
+          <a :href="item.url" target="_blank">{{ item.title }}</a> likes: {{ item.likes_count }}
+        </li>
+      </ul>
       
     </div>
 
